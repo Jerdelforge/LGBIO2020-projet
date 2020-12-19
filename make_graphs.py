@@ -61,31 +61,14 @@ def ecg_plot(ecg_signals, show_fig, ch_names, file_path=None):
     bottom = np.amin(ecg_signals[0:ecg_signals.shape[1]])
     top    = np.amax(ecg_signals[0:ecg_signals.shape[1]])
 
-    # One big figure to frame the whole
-    #ax0 = fig.add_subplot(111)
-    #plt.subplots_adjust(hspace=-0.2)
-    #ax0.tick_params(labelcolor='w', top=False, bottom=False, left=False, right=False)
-
     # Plot each channel
     for idx in range(1, ecg_signals.shape[0]+1):
         fig = plt.figure(figsize=(16,8))
-        #if idx == 1 :
-        #    plt.plot(time, ecg_signals.shape[0], 1, idx)
-            
-        #else:   
-        #    plt.plot(ecg_signals.shape[0], 1, idx, sharex=_ax)
         if idx == ecg_signals.shape[0]-1:
-            #fig.tick_params(labelcolor='black', top=False, bottom=True, left=False, right=False)
-            fig.patch.set_alpha(0)
-        #else:
-            #fig.axis('off')          
+            fig.patch.set_alpha(0)         
         plt.plot(time, ecg_signals[idx-1],  linewidth=1)
         plt.ylim(bottom, top)
         plt.title(ch_names[idx-1])
-
-    #ax0.set_ylabel('Amplitude (mv)')
-    
-    #fig.tight_layout() 
     
 
     # Save file
